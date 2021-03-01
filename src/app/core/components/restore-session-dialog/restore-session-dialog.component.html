@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Session was ended</h1>
+<div mat-dialog-content>
+  <form [formGroup]="loginFormGroup">
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Password</mat-label>
+        <input matInput required name="password" formControlName="password" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button
+                matSuffix type="button"
+                (click)="hide = !hide"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginFormGroup.get('password').errors?.required">Password is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="btn-container" *ngIf="!loading; else spinner">
+      <button mat-stroked-button (click)="logout()" type="button" color="accent">Sign Out</button>
+      <button mat-stroked-button (click)="login()" color="accent">Sign In</button>
+    </div>
+  </form>
+</div>
+<ng-template #spinner class="spinner">
+  <div class="spinner-container">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+</ng-template>

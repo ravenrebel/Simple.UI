@@ -1,0 +1,41 @@
+@import "../../../../scss/variables";
+
+.active {
+  background-color: mat-color($accent, 50);
+  border: 2px solid mat-color($primary, 200);
+}
+
+mat-card:hover {
+  border: 2px solid mat-color($primary);
+}
+mat-card:focus {
+  outline: none;
+}
+mat-card {
+  height: 50px;
+}
+mat-card-title {
+  font-size: large !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  display: inline-block;
+  white-space: nowrap;
+  width: 18vw;
+}
+mat-card-subtitle {
+  width: 20vw;
+}
+
+.message-container {
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  display: inline-block;
+  white-space: nowrap;
+  width: 18vw;
+}
+
+.message-date {
+  font-size: smaller;
+  color: mat-color($secondary, 600);
+}
+

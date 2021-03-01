@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Add Members</h1>
+<button mat-icon-button color="accent" matTooltip="Close" [mat-dialog-close]>
+  <mat-icon>close</mat-icon>
+</button>
+<div>
+  <app-select-members [chatMembers]="chat.members"
+                      [selectedUsers]="selectedUsers"
+  ></app-select-members>
+  <div class="count-container" *ngIf="selectedUsers.length; else noMembers" >
+    <span class="members-count">{{selectedUsers.length}}</span>
+    <mat-icon color="accent">group_add</mat-icon>
+  </div>
+  <ng-template #noMembers>
+    <span class="no-selected-text">*No selected users</span>
+  </ng-template>
+  <button mat-stroked-button
+          color="accent"
+          (click)="onAddMembers()"
+          [disabled]="!selectedUsers.length"
+          [mat-dialog-close]>
+    Add
+  </button>
+</div>

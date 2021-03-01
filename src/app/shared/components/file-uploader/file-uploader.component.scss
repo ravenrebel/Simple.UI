@@ -1,0 +1,108 @@
+@import "../../../../scss/variables";
+
+mat-card-subtitle {
+  padding: 10px;
+}
+
+::ng-deep {
+  .upload-refresh-icon {
+    box-sizing: content-box !important;
+  }
+
+  .files-preview-wrapper {
+    .file-preview-thumbnail .img-preview-thumbnail img {
+      border-radius: $border-radius !important;
+    }
+
+    file-preview-container {
+      background-color: transparent;
+
+      file-preview-item {
+        max-width: unset;
+      }
+    }
+  }
+
+  .cropper-actions button {
+    background-color: white !important;
+    font-family: inherit !important;
+    border: 1px solid mat-color($secondary, 300) !important;
+    padding: 7px 15px !important;
+    color: mat-color($accent, 900) !important;
+    border-radius: 4px !important;
+    z-index: 100 !important;
+
+    &:focus {
+      outline-color: mat-color($primary);
+    }
+  }
+
+  .cropperJsBox {
+    max-height: 95% !important;
+  }
+}
+
+::ng-deep .cropper-line, ::ng-deep .cropper-point {
+  background-color: mat-color($primary) !important;
+}
+
+.dropzone-text {
+  color: mat-color($primary) !important;
+  font-weight: bold;
+  font-size: large;
+  padding: 10px;
+}
+.custom-dropzone {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+::ng-deep #dropZone {
+  border: 2px dashed mat-color($primary, 100) !important;
+  border-radius: 4px !important;
+  min-width: 100px;
+  max-width: 40vw !important;
+  min-height: 200px;
+}
+
+::ng-deep .file-drop-wrapper {
+  background-color: mat-color($accent, 50) !important;
+  padding-bottom: 16px !important;
+  min-width: 200px;
+}
+
+::ng-deep .cropper-view-box {
+  box-shadow: 0 0 0 2px mat-color($accent, 900);
+  outline: 0;
+}
+
+::ng-deep #cropper-img {
+  max-height: 80vh;
+}
+
+ngx-file-picker {
+  max-width: unset !important;
+  border-radius: 4px !important;
+}
+
+:host ::ng-deep .rounded-image .cropper-view-box, .cropper-crop-box, .cropper-face {
+  border-radius: 50%;
+}
+
+.mat-icon-button.large {
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+
+  .mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+  }
+}

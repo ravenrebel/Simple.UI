@@ -1,0 +1,30 @@
+
+<quill-view *ngIf="post.text" [content]="post.text" format="html"></quill-view>
+
+<mat-accordion *ngIf="fileAttachments.length">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Attachments
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-list>
+      <mat-list-item *ngFor="let attachment of fileAttachments">
+        <mat-icon mat-list-icon color="accent">attachment</mat-icon>
+        <div mat-line>
+          <a href="{{baseUrl + attachment.fileUrl}}" target="_blank">{{attachment.fileName}}</a>
+        </div>
+      </mat-list-item>
+    </mat-list>
+
+  </mat-expansion-panel>
+</mat-accordion>
+
+<div class="gallery" *ngIf="galleryImages.length">
+  <ngx-gallery
+    [options]="galleryOptions"
+    [images]="galleryImages"
+  ></ngx-gallery>
+</div>
+

@@ -1,0 +1,32 @@
+@import "../../../../scss/variables";
+
+.dialog-scroll-viewport {
+  min-height: 50vh;
+  width: 40vw;
+}
+
+.tip {
+  min-height: 10vh;
+  width: 40vw;
+  color: mat-color($accent, 900);
+}
+
+.tip > a {
+  color: mat-color($primary);
+}
+
+.tip > a:hover {
+  color: mat-color($primary, 200);
+}
+
+button {
+  float: right;
+}
+
+h1 {
+  float: left;
+}
+
+.scroll-item {
+  margin: 0 !important;
+}

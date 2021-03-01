@@ -1,0 +1,21 @@
+<div class="infinite-scroll scroll-viewport"
+     infiniteScroll
+     [scrollWindow]="false"
+     [infiniteScrollThrottle]="200"
+     (scrolled)="newsDataSource.fetchPageData()"
+>
+  <div *ngIf="newsDataSource.loading" class="spinner-container">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <mat-card *ngFor="let postElement of newsDataSource.cachedNews"
+            class="scroll-item"
+  >
+    <app-post [post]="postElement"></app-post>
+  </mat-card>
+
+  <div *ngIf="!newsDataSource.cachedNews.length">
+    <img class="empty-state" src="assets/images/empty-state.png" alt="No content"/>
+  </div>
+</div>
+

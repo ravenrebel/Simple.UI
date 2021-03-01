@@ -1,0 +1,42 @@
+<mat-card-content>
+  <app-user-info [user]="post.creator"
+                 [routerLink]="['/people', post.creator.id]"
+                 class="creator-info"
+  ></app-user-info>
+  <mat-divider></mat-divider>
+  <div class="content" #content>
+    <h2 class="post-header">{{post.header}}</h2>
+    <app-post-content [post]="post"></app-post-content>
+  </div>
+
+  <div *ngIf="content.scrollHeight > content.offsetHeight">
+    <div class="mask"></div>
+    <div class="btn-container">
+      <button mat-stroked-button
+              color="accent"
+              (click)="openViewPostDialog()"
+      >View post
+      </button>
+    </div>
+  </div>
+
+  <div class="additional-content">
+    <div *ngIf="post.creator.id === currentUser.id">
+      <button mat-icon-button
+              color="accent"
+              (click)="onEdit()"
+              matTooltip="Edit"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button
+              color="accent"
+              (click)="onDelete()"
+              matTooltip="Delete"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <div class="date-container">{{post.createdAt | date: 'h:mm a dd MMM, yyyy'}}</div>
+  </div>
+</mat-card-content>

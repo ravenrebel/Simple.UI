@@ -1,0 +1,39 @@
+<div class="outer-container">
+  <div class="tools-container">
+    <form [formGroup]="searchFormGroup">
+      <mat-form-field appearance="standard">
+        <mat-label>Global search</mat-label>
+        <input matInput
+               type="text"
+               placeholder="Message"
+               formControlName="text"
+               matTooltip="Search messages globally"
+        >
+      </mat-form-field>
+      <button mat-icon-button
+              color="accent"
+              (click)="openSearchMessagesDialog()"
+              [disabled]="searchFormGroup.get('text').value === null
+                || searchFormGroup.get('text').value.match('^ *$') !== null"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+    </form>
+    <button mat-icon-button
+            color="accent"
+            matTooltip="Create chat"
+            (click)="openCreateChatDialog()"
+    >
+      <mat-icon>mail</mat-icon>
+    </button>
+  </div>
+  <div class="infinite-scroll"
+       infiniteScroll
+       [scrollWindow]="false"
+       (scrolled)="onScroll()"
+  >
+    <div matRipple *ngFor="let chatElement of chats" class="chat-item">
+      <app-chat-info [chat]="chatElement"></app-chat-info>
+    </div>
+  </div>
+</div>

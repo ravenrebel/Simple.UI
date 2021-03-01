@@ -1,0 +1,52 @@
+@import "../../../../scss/variables";
+
+.date-container {
+  color: mat-color($secondary, 500);
+  font-size: smaller;
+  white-space: nowrap;
+}
+
+.name-container {
+  color: mat-color($accent, 900);
+  font-size: small;
+  font-weight: bold;
+  margin-right: 10px;
+  max-width: 200px;
+}
+
+.message-text-container {
+  word-wrap: break-word;
+  max-width: 400px;
+  color: mat-color($accent, 900);
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.name-container:focus {
+  outline: none;
+}
+.name-container:hover {
+  cursor: pointer;
+}
+
+.inner-container {
+  flex: 1 100%;
+  margin-left: 15px;
+}
+
+.message-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-size: cover;
+}
+
+.status-circle {
+  top: 23px;
+  left: 70%;
+}
+

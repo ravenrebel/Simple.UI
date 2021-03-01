@@ -1,0 +1,8 @@
+@import '../../node_modules/@angular/material/theming';
+
+$primary: mat-palette($mat-light-green);
+$accent: mat-palette($mat-green, 700, 900);
+$secondary: mat-palette($mat-gray, 100, 300);
+$warn: mat-palette($mat-deep-orange, 500);
+
+$border-radius: 4px;

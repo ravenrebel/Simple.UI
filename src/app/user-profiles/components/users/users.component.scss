@@ -1,0 +1,17 @@
+@import '../../../../scss/variables';
+
+.search-box {
+  margin: min(50px) auto min(20px);
+}
+
+.scroll-viewport {
+  position: fixed;
+  margin-top: 90px;
+  width: 100vw;
+  bottom: 0;
+  top: 64px;
+}
+
+.spinner-container {
+  margin-top: 5%;
+}

@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<button mat-icon-button
+        matTooltip="Close"
+        [mat-dialog-close]
+        color="accent"
+><mat-icon>close</mat-icon>
+</button>
+<cdk-virtual-scroll-viewport *ngIf="users.length; else noUsers" itemSize="100" class="dialog-scroll-viewport">
+  <mat-card matRipple
+            class="scroll-item"
+            *cdkVirtualFor="let userElement of users"
+            [mat-dialog-close]
+            [routerLink]="['/people', userElement.id]"
+  >
+    <app-user-info [user]="userElement"></app-user-info>
+  </mat-card>
+</cdk-virtual-scroll-viewport>
+<ng-template #noUsers>
+  <mat-dialog-content class="tip">It seems you have no <b>{{data.title}}</b>. You can find people
+    <a [mat-dialog-close] [routerLink]="['/people']">here</a>.</mat-dialog-content>
+</ng-template>

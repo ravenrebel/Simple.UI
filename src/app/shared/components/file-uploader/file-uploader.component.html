@@ -1,0 +1,46 @@
+<mat-error #error *ngIf="filePickerError?.error === 'TOTAL_MAX_SIZE'">
+  Total max size is {{totalMaxSize}} MB
+</mat-error>
+<mat-error #error *ngIf="filePickerError?.error === 'FILE_MAX_SIZE'">
+  File is too large. Max size is {{fileMaxSize}} MB
+</mat-error>
+<mat-error #error *ngIf="filePickerError?.error === 'EXTENSIONS'">
+  Invalid file type
+</mat-error>
+<mat-error #error *ngIf="filePickerError?.error === 'UPLOAD_TYPE'">
+  You have already chosen your avatar, please, delete first
+</mat-error>
+
+<ngx-file-picker
+  #filePickerComponent
+  [adapter]="adapter"
+  [enableAutoUpload]="true"
+  [enableCropper]="true"
+  [totalMaxSize]="totalMaxSize"
+  [fileMaxSize]="fileMaxSize"
+  [accept]="accept"
+  [fileExtensions]="fileExtensions"
+  [uploadType]="uploadType"
+  (uploadSuccess)="onUploadSuccess($event)"
+  (removeSuccess)="onRemoveSuccess($event)"
+  (validationError)="onValidationError($event)"
+  (fileAdded)="onFileAdded($event)"
+  [ngClass]="{'rounded-image': cropRounded}"
+>
+  <div class="dropzoneTemplate">
+    <div class="custom-dropzone">
+      <p class="dropzone-text">Drag and Drop files here</p>
+      <div>
+        <button mat-icon-button
+                class="large"
+                type="button"
+                matTooltip="Open upload file dialog">
+          <mat-icon>file_upload</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</ngx-file-picker>
+<mat-card-subtitle>{{totalSize | number}} / {{totalMaxSize}} MB uploaded</mat-card-subtitle>
+
+

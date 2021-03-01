@@ -1,0 +1,18 @@
+<div class="flex-container">
+  <div class="avatar-container">
+    <img
+      src="{{message.sender.profilePictureUrl? baseUrl + message.sender.profilePictureUrl: defaultProfilePictureUrl}}"
+      alt="Avatar"
+      class="message-avatar">
+    <span *ngIf="message.sender.isOnline" class="status-circle"></span>
+  </div>
+  <div class="inner-container">
+    <div class="flex-container">
+      <div class="name-container" [routerLink]="['/people', message.sender.id]">
+        {{message.sender.userName}}
+      </div>
+      <div class="date-container">{{message.sentAt | date: 'h:mm a dd MMM, yyyy'}}</div>
+    </div>
+    <div class="message-text-container">{{message.text}}</div>
+  </div>
+</div>

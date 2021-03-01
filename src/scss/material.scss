@@ -1,0 +1,50 @@
+mat-sidenav-container.mat-tab-body-content, mat-sidenav-content.mat-tab-body-content {
+  transform: none !important;
+}
+
+mat-form-field.mat-form-field {
+  width: 300px;
+  padding-bottom: 30px;
+  color: mat-color($accent, 900);
+}
+
+mat-card, mat-expansion-panel.mat-expansion-panel {
+  box-shadow: none !important;
+  border: solid 1px mat-color($secondary, 300);
+  outline: none;
+}
+
+mat-panel-title {
+  color: mat-color($accent, 900) !important;
+}
+
+mat-card-title {
+  padding-bottom: 2px;
+}
+
+mat-card-title, mat-card-subtitle {
+  color: mat-color($accent, 900);
+}
+
+mat-toolbar, mat-toolbar-row {
+  border-bottom: solid 1px mat-color($secondary, 300);
+  background: white !important;
+}
+
+mat-toolbar-row {
+  height: 90px !important;
+  z-index: 1;
+  position: fixed;
+}
+
+.mat-dialog-title {
+  color: mat-color($accent, 900);
+  font-weight: bold !important;
+}
+.mat-dialog-container {
+  box-shadow: none;
+}
+
+.mat-badge-content {
+  color: mat-color($accent, 900);
+}

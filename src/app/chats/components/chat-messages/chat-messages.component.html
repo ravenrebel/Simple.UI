@@ -1,0 +1,88 @@
+<div class="outer-container">
+
+  <div class="search-box-container">
+    <div class="chat-info">
+      <div class="chat-name-container">
+        <span>{{chat?.name}}</span>
+      </div>
+      <button *ngIf="!chat?.isPrivate" mat-button class="light-btn" matTooltip="View members" (click)="openMembersDialog()">
+        {{chat?.members.length === 1 ? chat?.members.length + ' member' : chat?.members.length + ' members'}}
+      </button>
+    </div>
+    <div class="search-box" (focusout)="searchFormGroup.updateValueAndValidity()">
+      <form [formGroup]="searchFormGroup">
+        <mat-form-field appearance="standard">
+          <mat-label>Search</mat-label>
+          <input matInput
+                 type="text"
+                 placeholder="Message"
+                 formControlName="text"
+                 matTooltip="Search messages"
+          >
+        </mat-form-field>
+        <button mat-icon-button
+                color="accent"
+                (click)="openSearchMessagesDialog()"
+                [disabled]="searchFormGroup.get('text').value === null
+                || searchFormGroup.get('text').value.match('^ *$') !== null"
+        >
+          <mat-icon>search</mat-icon>
+        </button>
+      </form>
+      <button mat-icon-button color="accent" matTooltip="Options" [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onLeave()">Leave</button>
+      <button mat-menu-item (click)="onAdd()">Add members</button>
+      <button mat-menu-item [disabled]="chat?.isPrivate" (click)="openEditChatDialog()">Edit chat info</button>
+    </mat-menu>
+  </div>
+
+  <div class="spinner-container" *ngIf="loading || sending">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <div class="infinite-scroll"
+       appChatScrollDirective
+       infiniteScroll
+       [scrollWindow]="false"
+       [infiniteScrollThrottle]="200"
+       [ngStyle]="{'filter': loading ? 'blur(5px)' : 'none'}"
+       (scrolledUp)="onLoadMessages()">
+
+    <mat-card *ngFor="let messageElement of messages; index as i"
+              class="message"
+              [ngClass]="{
+                'my-message': messageElement.sender.id === currentUser.id,
+                'unsent-message': !messageElement.id
+              }"
+              [@messageState]="(messageElement.id && searchedMessageId === messageElement.id) ? 'searched' : '*'"
+    >
+      <div *ngIf="!messageElement.id" class="unsent-message-info-container">
+        <mat-error>Unsent! Check your connection and try again</mat-error>
+        <div>
+          <button mat-icon-button color="warn" (click)="onResend(messageElement, i)">
+            <mat-icon>refresh</mat-icon>
+          </button>
+        </div>
+      </div>
+      <app-message #message [message]="messageElement"></app-message>
+    </mat-card>
+  </div>
+
+  <div class="tools-container">
+    <form [formGroup]="messageFormGroup">
+      <mat-form-field appearance="fill" class="message-input">
+        <input matInput placeholder="Enter your message" formControlName="message" maxlength="2000">
+      </mat-form-field>
+      <button mat-icon-button color="accent" (click)="onSend()"
+              [disabled]="!messageFormGroup.get('message').value
+              || messageFormGroup.get('message').value.match('^ *$')">
+        <mat-icon>send</mat-icon>
+      </button>
+    </form>
+  </div>
+
+</div>

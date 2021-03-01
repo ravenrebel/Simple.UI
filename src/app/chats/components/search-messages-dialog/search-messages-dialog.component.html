@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Results for <span class="searched-text">{{searchOptions.text}}</span></h1>
+<button mat-icon-button matTooltip="Close" [mat-dialog-close]><mat-icon>close</mat-icon></button>
+<cdk-virtual-scroll-viewport *ngIf="dataSource.cachedItems.length" itemSize="100" class="dialog-scroll-viewport">
+  <mat-card matRipple *cdkVirtualFor="let messageElement of dataSource"
+            [mat-dialog-close]="messageElement"
+            class="message"
+            [ngClass]="{'my-message': messageElement.sender.id === currentUserId}"
+  >
+    <app-message [message]="messageElement"></app-message>
+  </mat-card>
+</cdk-virtual-scroll-viewport>
+<app-loading-spinner class="spinner-container" *ngIf="dataSource.loading"></app-loading-spinner>
+<mat-dialog-content *ngIf="!dataSource.cachedItems.length && !dataSource.loading"><span class="no-results">No results</span></mat-dialog-content>
+

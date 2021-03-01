@@ -1,0 +1,26 @@
+@import "../../../../scss/variables";
+
+button {
+  float: right;
+}
+h1, .count-container {
+  float: left;
+}
+
+.members-count {
+  font-weight: bold;
+  font-size: medium;
+  padding: 5px;
+}
+
+.count-container {
+  display: flex;
+  align-items: center;
+}
+
+.no-selected-text {
+  color: mat-color($warn, 900) !important;
+  font-size: x-small;
+  margin: 10px;
+}
+

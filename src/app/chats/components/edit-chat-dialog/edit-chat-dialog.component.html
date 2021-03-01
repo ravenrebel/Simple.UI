@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>Edit Chat</h1>
+<div mat-dialog-content>
+  <form [formGroup]="editChatFormGroup">
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Chat Name</mat-label>
+        <input matInput name="name" formControlName="name">
+        <span class="warning" *ngIf="!editChatFormGroup.get('name').value">*Default name</span>
+        <mat-error *ngIf="editChatFormGroup.get('name').errors?.maxlength">
+          Chat Name should be less than 50 characters
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="file-input-container">
+      Avatar:&nbsp;
+      <app-file-uploader
+        #fileUploaderComponent
+        [fileMaxSize]="1"
+        [totalMaxSize]="1"
+        [accept]="'image/*'"
+        [fileExtensions]="['jpg', 'jpeg', 'png', 'JPEG', 'svg', 'gif']"
+        [cropRounded]="true"
+        [uploadType]="'single'"
+        (upload)="onFileUpload($event)"
+        (removed)="onFileRemoved($event)"
+      >
+      </app-file-uploader>
+    </div>
+    <div class="btn-container">
+      <button mat-stroked-button
+              color="accent"
+              type="button"
+              [disabled]="uploading"
+              (click)="onCancel()"
+      >Cancel
+      </button>
+      <button mat-stroked-button
+              color="accent"
+              type="submit"
+              [disabled]="!(editChatFormGroup.dirty || pictureChange)? true : uploading"
+              (click)="onSave()"
+      >Save</button>
+    </div>
+  </form>
+</div>
+
+

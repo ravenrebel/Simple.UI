@@ -1,0 +1,26 @@
+<div class="viewport-container">
+  <mat-toolbar-row>
+    <form class="search-box" [formGroup]="searchFormGroup">
+      <mat-form-field appearance="standard">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" placeholder="Username" formControlName="name">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </form>
+  </mat-toolbar-row>
+  <cdk-virtual-scroll-viewport itemSize="100" class="scroll-viewport">
+
+    <div class="spinner-container" *ngIf="dataSource.loading">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+
+    <mat-card matRipple
+              *cdkVirtualFor="let userElement of dataSource"
+              [ngStyle]="{'filter': dataSource.loading ? 'blur(2px)' : 'none'}"
+              class="scroll-item"
+              [routerLink]="['/people', userElement.id]"
+    >
+      <app-user-info [user]="userElement"></app-user-info>
+    </mat-card>
+  </cdk-virtual-scroll-viewport>
+</div>

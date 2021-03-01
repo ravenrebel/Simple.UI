@@ -1,0 +1,20 @@
+button {
+  font-weight: bold !important;
+  letter-spacing: 1px;
+}
+
+.btn-container {
+  padding: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    margin: 10px;
+  }
+}
+
+.light-btn {
+  color: mat-color($primary) !important;
+}

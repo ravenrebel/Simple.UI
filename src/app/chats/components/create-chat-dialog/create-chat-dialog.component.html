@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Create chat</h1>
+<div class="forms-container">
+  <app-select-members [selectedUsers]="selectedUsers" [chatMembers]="[]"></app-select-members>
+  <form [formGroup]="createChatFormGroup">
+    <div>
+      <mat-form-field *ngIf="selectedUsers.length > 1" appearance="standard">
+        <mat-label>Chat Name</mat-label>
+        <input matInput name="name"
+               formControlName="name"
+               placeholder="Group chat name (optional)"
+        >
+        <mat-error *ngIf="createChatFormGroup.get('userName')?.errors?.maxlength">
+          Chat Name should be less than 50 characters
+        </mat-error>
+        <span class="warning" *ngIf="!createChatFormGroup.get('name').value">*Default name</span>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Message</mat-label>
+        <input matInput name="message" formControlName="message" placeholder="First message (optional)">
+      </mat-form-field>
+    </div>
+    <div class="btn-container">
+      <button mat-stroked-button
+              color="accent"
+              type="button"
+              [mat-dialog-close]
+      >
+        Cancel</button>
+      <button mat-stroked-button
+              color="accent"
+              type="submit"
+              (click)="onCreate()"
+              [disabled]="!selectedUsers.length"
+              [mat-dialog-close]>
+        Create
+      </button>
+    </div>
+  </form>
+</div>
+

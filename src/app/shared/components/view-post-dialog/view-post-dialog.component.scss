@@ -1,0 +1,22 @@
+@import "../../../../scss/variables";
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-card {
+  min-width: 50vw;
+  min-height: 40vh;
+}
+
+.date-container {
+  font-size: small;
+  color: mat-color($accent, 900);
+}
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+

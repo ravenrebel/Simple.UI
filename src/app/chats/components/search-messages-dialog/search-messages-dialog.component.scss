@@ -1,0 +1,35 @@
+@import "../../../../scss/variables";
+
+.dialog-scroll-viewport {
+  min-height: 70vh;
+  width: 40vw;
+}
+
+.searched-text {
+  color: mat-color($primary);
+}
+.no-results {
+  color: mat-color($secondary, 600);
+  font-size: large;
+}
+
+button {
+  float: right;
+}
+h1 {
+  float: left;
+  margin-right: 10px;
+}
+
+.message {
+  border: 2px solid mat-color($accent, 200);
+  min-width: 300px;
+  margin-bottom: 5px !important;
+  cursor: pointer;
+}
+.my-message {
+  border-color: mat-color($primary, 200);
+}
+
+
+

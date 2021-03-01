@@ -1,0 +1,55 @@
+@import "../../../../scss/variables";
+
+.upper-part {
+  background-color: mat-color($primary);
+  height: 15vh;
+  width: 100vw;
+}
+
+.avatar {
+  margin-top: -50%;
+  width: 150px;
+  height: 150px;
+  border: 3px solid white;
+}
+
+.user-info-container {
+  height: 95px;
+  z-index: 10;
+}
+
+.user-info-container > * {
+  justify-content: center;
+}
+
+.profile-btn-container, .user-info-container {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  min-width: 250px;
+}
+
+.name-container {
+  max-width: 30vw;
+  overflow: hidden;
+}
+
+mat-card-header:hover {
+  cursor: default;
+}
+
+:host ::ng-deep .scroll-viewport {
+  top: 15vh;
+  margin-top: 129px;
+}
+
+.status-circle {
+  top: 50%;
+  left: 76%;
+  width: 15px;
+  height: 15px;
+}
+
+.status-circle, .avatar {
+  box-sizing: content-box !important;
+}

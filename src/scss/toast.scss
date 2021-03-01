@@ -1,0 +1,22 @@
+#toast-container {
+  margin-top: 64px;
+  margin-right: 20px;
+
+  & > .toast-success {
+    background-color: mat-color($primary);
+    color: mat-color($accent, 900);
+  }
+
+  & > .toast-error {
+    background-color: mat-color($warn, 900);
+  }
+
+  & > .toast-error {
+    color: white;
+  }
+
+  & > .toast-info {
+    background-color: sandybrown; // TODO: color system
+    color: saddlebrown;
+  }
+}

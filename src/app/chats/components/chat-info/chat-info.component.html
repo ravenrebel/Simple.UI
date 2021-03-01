@@ -1,0 +1,20 @@
+<mat-card [routerLink]="['/chats', chat.id]"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"
+>
+  <mat-card-header>
+    <div mat-card-avatar class="avatar-container">
+      <img src="{{chat.pictureUrl? baseUrl + chat.pictureUrl: defaultChatPictureUrl}}"
+           alt="Avatar"
+           class="avatar--small">
+      <span *ngIf="this.interlocutor?.isOnline" class='status-circle'></span>
+    </div>
+    <mat-card-title>{{name}}</mat-card-title>
+    <mat-card-subtitle matBadge="{{chat.unreadMessagesCount}}"
+                       matBadgeOverlap="true"
+                       [matBadgeHidden]="!chat.unreadMessagesCount"
+                       *ngIf="chat.lastMessage">
+      <span class="message-container">{{chat.lastMessage?.sender.userName}}: {{chat.lastMessage?.text}}</span>
+    </mat-card-subtitle>
+  </mat-card-header>
+</mat-card>

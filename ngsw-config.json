@@ -1,0 +1,76 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html",
+          "/manifest.webmanifest",
+          "/**/*.scss",
+          "/**/*.css",
+          "/*.js"
+        ],
+        "urls": [
+          "https://fonts.googleapis.com/css2?Montserrat+Alternates:wght@600&amp;family=Montserrat:ital,wght@0,500;0,700;1,700&amp;display=swap",
+          "https://fonts.googleapis.com/icon?family=Material+Icons"
+
+        ]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**",
+          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "news",
+      "urls": [
+        "https://localhost:44300/api/news/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 1,
+        "maxAge": "5d",
+        "strategy": "freshness",
+        "timeout": "5s"
+      }
+    },
+    {
+      "name": "messages",
+      "urls": [
+        "https://localhost:44300/api/messages/**",
+        "https://localhost:44300/api/chats/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 1,
+        "maxAge": "1d",
+        "strategy": "freshness",
+        "timeout": "2s"
+      }
+    },
+    {
+      "name": "users",
+      "urls": [
+        "https://localhost:44300/api/users/**",
+        "https://localhost:44300/api/userfollowees/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 1,
+        "maxAge": "1d",
+        "strategy": "freshness",
+        "timeout": "1s"
+      }
+    }
+  ]
+}

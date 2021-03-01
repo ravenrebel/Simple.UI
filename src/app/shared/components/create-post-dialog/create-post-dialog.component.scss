@@ -1,0 +1,30 @@
+@import "../../../../scss/variables";
+
+.error {
+  color: mat-color($warn, 900);
+  font-size: small;
+  margin: 5px;
+}
+
+mat-form-field.mat-form-field {
+  padding-bottom: 10px !important;
+}
+
+.mat-dialog-content {
+  width: 60vw;
+}
+
+.close-btn {
+  float: right;
+}
+h1 {
+  float: left;
+}
+
+.save-btn {
+  width: 200px;
+  height: 40px;
+  color: mat-color($accent, 900);
+  margin-bottom: 15px;
+  margin-right: 20px;
+}

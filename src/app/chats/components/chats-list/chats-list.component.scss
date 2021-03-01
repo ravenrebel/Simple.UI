@@ -1,0 +1,49 @@
+@import "../../../../scss/variables";
+
+.infinite-scroll {
+  overflow-y: scroll;
+  flex: 1 100%;
+}
+
+.outer-container {
+  position: absolute;
+  bottom: 64px;
+  right: 70%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  border: 1px solid mat-color($secondary, 300);
+  overflow: hidden;
+}
+
+.chat-item {
+  overflow: hidden;
+  margin: 5px;
+  min-width: 200px;
+}
+
+.tools-container {
+  background-color: white;
+  border-bottom: 1px solid mat-color($secondary, 300);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1;
+}
+
+mat-form-field {
+  padding-bottom: 0;
+  width: 12vw;
+}
+form {
+  flex-wrap: nowrap;
+  display: flex;
+  align-items: center;
+  height: 60px !important;
+  flex: 10%;
+}
+

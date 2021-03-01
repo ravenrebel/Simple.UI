@@ -1,0 +1,10 @@
+<mat-card-header>
+  <div mat-card-avatar class="avatar-container">
+    <img src="{{user.profilePictureUrl? baseUrl + user.profilePictureUrl: defaultProfilePictureUrl}}"
+         alt="Avatar"
+         class="avatar avatar--small">
+    <span *ngIf="user.isOnline" class='status-circle'></span>
+  </div>
+  <mat-card-title class="name-container">{{user.userName}}</mat-card-title>
+  <mat-card-subtitle class="name-container">{{user.firstName}} {{user.lastName}}</mat-card-subtitle>
+</mat-card-header>

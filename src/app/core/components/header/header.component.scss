@@ -1,0 +1,57 @@
+@import "../../../../scss/variables";
+
+.sidenav-container {
+  height: 100%;
+  position: fixed;
+  right: 0;
+  left: 0;
+}
+
+mat-sidenav {
+  border-right: solid 1px mat-color($secondary, 300);
+}
+
+mat-list-item.mat-list-item {
+  padding-right: min(20px);
+}
+
+mat-sidenav-content {
+  background-color: mat-color($secondary);
+  display: flex;
+  height: 100%;
+}
+
+.logout-btn {
+  position: absolute;
+  bottom: 20vh;
+  margin-left: min(20%);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.active mat-icon, .active a {
+  color: mat-color($primary) !important;
+}
+
+.toolbar {
+  z-index: 1;
+  overflow: hidden;
+}
+
+.notifications-list > mat-list-item {
+  color: mat-color($accent, 700);
+}
+
+mat-nav-list {
+  overflow: hidden;
+}
+
+mat-toolbar.mat-toolbar-single-row {
+  height: 64px !important;
+}

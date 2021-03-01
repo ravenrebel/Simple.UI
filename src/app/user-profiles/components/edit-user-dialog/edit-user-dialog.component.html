@@ -1,0 +1,69 @@
+<h1 mat-dialog-title>Edit Profile</h1>
+<div mat-dialog-content>
+  <form [formGroup]="editProfileFormGroup">
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Username</mat-label>
+        <input matInput required name="username" formControlName="userName">
+        <mat-error *ngIf="editProfileFormGroup.get('userName').errors?.taken">Username is taken</mat-error>
+        <mat-error *ngIf="editProfileFormGroup.get('userName').errors?.required">Username is required</mat-error>
+        <mat-error *ngIf="editProfileFormGroup.get('userName').errors?.pattern">Username should contain only letters,
+          numbers and underscores
+        </mat-error>
+        <mat-error *ngIf="editProfileFormGroup.get('userName').errors?.maxlength">
+          Username should be less than 256 characters
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput name="firstName" required formControlName="firstName">
+        <mat-error *ngIf="editProfileFormGroup.get('firstName').errors?.required">First Name is required</mat-error>
+        <mat-error *ngIf="editProfileFormGroup.get('firstName').errors?.maxlength">
+          First Name should be less than 256 characters
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput name="lastName" required formControlName="lastName">
+        <mat-error *ngIf="editProfileFormGroup.get('lastName').errors?.required">Last Name is required</mat-error>
+        <mat-error *ngIf="editProfileFormGroup.get('lastName').errors?.maxlength">
+          Last Name should be less than 256 characters
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="file-input-container">
+      Profile Picture:&nbsp;
+      <app-file-uploader
+        #fileUploaderComponent
+        [fileMaxSize]="5"
+        [totalMaxSize]="5"
+        [accept]="'image/*'"
+        [fileExtensions]="['jpg', 'jpeg', 'png', 'svg', 'gif']"
+        [cropRounded]="true"
+        [uploadType]="'single'"
+        (upload)="onFileUpload($event)"
+        (removed)="onFileRemoved($event)"
+      >
+      </app-file-uploader>
+    </div>
+    <div class="btn-container">
+      <button mat-stroked-button
+              color="accent"
+              type="button"
+              [disabled]="uploading"
+              (click)="onCancel()"
+      >Cancel</button>
+      <button mat-stroked-button
+              color="accent"
+              type="submit"
+              [disabled]="!(editProfileFormGroup.dirty || profilePictureChange)? true : uploading"
+              (click)="onSave()"
+      >Save</button>
+    </div>
+  </form>
+</div>
+

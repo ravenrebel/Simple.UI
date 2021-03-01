@@ -1,0 +1,65 @@
+<h1 mat-dialog-title>Post</h1>
+<button color="accent"
+        class="close-btn"
+        type="button"
+        mat-icon-button
+        [disabled]="!(postData.attachments.length === fileUploaderComponent.files.length)"
+        (click)="onCancel()"
+        matTooltip="Close">
+  <mat-icon>close</mat-icon>
+</button>
+<div mat-dialog-content>
+  <form [formGroup]="postFormGroup">
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Header</mat-label>
+        <input matInput name="header" formControlName="header">
+        <mat-error *ngIf="postFormGroup.get('header').errors?.maxlength">Max length is 100</mat-error>
+      </mat-form-field>
+    </div>
+
+    <quill-editor [placeholder]="'Enter post body'"
+                  [styles]="{height: '30vh'}"
+                  bounds="self"
+                  formControlName="text"
+                  trimOnValidation="true"
+                  #quillEditorComponent
+    >
+    </quill-editor>
+    <mat-error class="ql-error" *ngIf="postFormGroup.get('text').errors?.maxlength">
+      You have achieved max size of the post (2000 characters)
+    </mat-error>
+
+    <div class="file-input-container">
+      Attachments:&nbsp;
+      <app-file-uploader
+        #fileUploaderComponent
+        (upload)="onFileUpload($event)"
+        (removed)="onFileRemoved($event)"
+        [totalMaxSize]="20"
+      ></app-file-uploader>
+    </div>
+
+    <div class="btn-container">
+      <button
+        class="save-btn"
+        mat-flat-button
+        color="primary"
+        type="submit"
+        (click)="onSave()"
+        [disabled]="!(postData.attachments.length === fileUploaderComponent.files.length && (
+        (attachmentsChanges && postData.attachments.length) ||
+        postFormGroup.get('text').value ||
+        postFormGroup.get('header').value)) ||
+        postFormGroup.invalid ||
+        !(postFormGroup.dirty || !!attachmentsChanges)"
+      >Save
+      </button>
+      <i>
+        <span class="error" *ngIf="!(postData.attachments.length || postFormGroup.get('text').value ||
+          postFormGroup.get('header').value)">*Please enter at least one of above fields to save a post.
+      </span>
+      </i>
+    </div>
+  </form>
+</div>

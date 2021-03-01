@@ -1,0 +1,29 @@
+.infinite-scroll {
+  overflow-y: scroll;
+}
+
+.scroll {
+  &-viewport {
+    width: 100vw;
+    bottom: 64px;
+    top: 0;
+    position: absolute;
+  }
+
+  &-item {
+    margin: 10px auto;
+    overflow: hidden;
+    cursor: pointer;
+    max-width: 50vw;
+
+    &:hover {
+      border: 1px solid mat-color($primary);
+    }
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .scroll-item {
+    max-width: 90vw;
+  }
+}

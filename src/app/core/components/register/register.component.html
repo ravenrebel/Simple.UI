@@ -1,0 +1,83 @@
+<form [formGroup]="registerFormGroup">
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Username</mat-label>
+      <input matInput required name="username" formControlName="userName">
+      <mat-error *ngIf="registerFormGroup.get('userName').errors?.taken">Username is taken</mat-error>
+      <mat-error *ngIf="registerFormGroup.get('userName').errors?.required">Username is required</mat-error>
+      <mat-error *ngIf="registerFormGroup.get('userName').errors?.pattern">
+        Username should contain only letters, numbers and underscores
+      </mat-error>
+      <mat-error *ngIf="registerFormGroup.get('userName').errors?.maxlength">
+        Username should be less than 256 characters
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Password</mat-label>
+      <input matInput required name="password" formControlName="password" [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button
+            type="button"
+            color="accent"
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="registerFormGroup.get('password').errors?.required">Password is required</mat-error>
+    <mat-error *ngIf="registerFormGroup.get('password').errors?.minlength">Password should be more than 6 characters</mat-error>
+    <mat-error *ngIf="registerFormGroup.get('password').errors?.pattern">
+      Password should contain at least one numeric and one alphabetic lowercase character
+    </mat-error>
+      <mat-error *ngIf="registerFormGroup.get('password').errors?.maxlength">
+        Password should be less than 256 characters
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput name="firstName" required formControlName="firstName">
+      <mat-error *ngIf="registerFormGroup.get('firstName').errors?.required">First Name is required</mat-error>
+      <mat-error *ngIf="registerFormGroup.get('firstName').errors?.maxlength">
+        First Name should be less than 256 characters
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput name="lastName" required formControlName="lastName">
+      <mat-error *ngIf="registerFormGroup.get('lastName').errors?.required">Last Name is required</mat-error>
+      <mat-error *ngIf="registerFormGroup.get('lastName').errors?.maxlength">
+        Last Name should be less than 256 characters
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput name="email" required formControlName="email">
+      <mat-icon color="accent" matSuffix>alternate_email</mat-icon>
+      <mat-error *ngIf="registerFormGroup.get('email').errors?.taken">Email is taken</mat-error>
+      <mat-error *ngIf="registerFormGroup.get('email').errors?.required">First Name is required</mat-error>
+      <mat-error *ngIf="registerFormGroup.get('email').errors?.email">Email is invalid</mat-error>
+      <mat-error *ngIf="registerFormGroup.get('email').errors?.maxlength">
+        Email should be less than 256 characters
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div *ngIf="!loading; else spinner" class="btn-container">
+    <button mat-stroked-button color="accent" (click)="register()">Sign Up</button>
+  </div>
+  <div class="link-container">
+    <a [routerLink]="['/login']">Already have an account?</a>
+  </div>
+</form>
+<ng-template #spinner>
+  <div class="spinner-container">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+</ng-template>

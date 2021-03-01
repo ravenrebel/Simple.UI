@@ -1,0 +1,85 @@
+<mat-toolbar class="toolbar">
+    <button mat-icon-button color="accent" (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a class="logo-link" [routerLink]="['/home']"><span class="logo">Simple</span></a>
+    <span class="spacer"></span>
+
+    <button mat-icon-button
+            color="accent"
+            type="button"
+            matTooltip="Create post"
+            (click)="openDialog(); sidenav.close()"
+    ><mat-icon>create</mat-icon></button>
+    <button mat-icon-button
+            type="button"
+            [matMenuTriggerFor]="menu"
+            (click)="setSubscriptionValue()"
+    >
+    <mat-icon
+      color="accent"
+      matBadge="{{unreadMessagesCount}}"
+      matBadgeOverlap="true"
+      matTooltip="Notifications"
+      [matBadgeHidden]="!unreadMessagesCount"
+    >notifications</mat-icon>
+    </button>
+
+  <mat-menu #menu="matMenu" [formGroup]="notificationsFormGroup">
+    <mat-nav-list class="notifications-list">
+      <mat-list-item [routerLink]="['/chats']"
+                     (click) = "unreadMessagesCount = 0"
+      >
+        <mat-icon mat-list-icon
+          color="accent"
+          matBadge="{{unreadMessagesCount}}"
+          matBadgeOverlap="true"
+          matTooltip="Messages"
+          [matBadgeHidden]="!unreadMessagesCount"
+        >mail
+        </mat-icon>
+        <div mat-line>Messages</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <mat-slide-toggle formControlName="notifications">
+          Push notifications
+        </mat-slide-toggle>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-menu>
+
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav (click)="sidenav.toggle()">
+    <mat-nav-list>
+      <mat-list-item [routerLink]="['/home']" routerLinkActive="active">
+        <mat-icon mat-list-icon color="accent">home</mat-icon>
+        <a mat-line>Home</a>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['/people', currentUser.id]"
+                     routerLinkActive="active">
+        <mat-icon mat-list-icon color="accent">person</mat-icon>
+        <a mat-line>Profile</a>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['/people']"
+                     routerLinkActive="active"
+                     [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon mat-list-icon color="accent">people</mat-icon>
+        <a mat-line>People</a>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['/chats']"
+                     routerLinkActive="active"
+                     (click) = "unreadMessagesCount = 0"
+      >
+        <mat-icon mat-list-icon color="accent">mail</mat-icon>
+        <a mat-line>Messages</a>
+      </mat-list-item>
+    </mat-nav-list>
+      <button mat-stroked-button class="logout-btn" color="accent" (click)="logout()">Sign Out</button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

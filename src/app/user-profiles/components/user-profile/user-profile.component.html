@@ -1,0 +1,56 @@
+<div class="upper-part"></div>
+<div>
+  <mat-card class="user-info-container">
+    <div class="avatar-container">
+        <img src="{{user?.profilePictureUrl? baseUrl + user.profilePictureUrl: defaultProfilePictureUrl}}" alt="Avatar"
+             class="avatar"/>
+      <span *ngIf="user?.isOnline" class='status-circle'></span>
+    </div>
+    <div class="info">
+      <mat-card-header>
+        <mat-card-title class="name-container">{{user?.userName}}</mat-card-title>
+        <mat-card-subtitle class="name-container">{{user?.firstName}} {{user?.lastName}}</mat-card-subtitle>
+        <button *ngIf="user?.id == currentUser?.id; else notCurrentUser"
+                mat-icon-button
+                matTooltip="Edit profile info"
+                color="accent"
+                (click)="openEditDialog()">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <ng-template #notCurrentUser>
+          <button *ngIf="!isSubscribed; else subscribed"
+                  mat-icon-button
+                  matTooltip="Subscribe"
+                  color="accent"
+                  (click)="(onSubscribe())">
+            <mat-icon>person_add</mat-icon>
+          </button>
+          <ng-template #subscribed>
+            <button mat-icon-button
+                    matTooltip="Unsubscribe"
+                    color="accent"
+                    (click)="(onUnsubscribe())">
+              <mat-icon>person_remove</mat-icon>
+            </button>
+          </ng-template>
+          <button mat-icon-button
+                  matTooltip="Send message"
+                  color="accent"
+                  (click)="onChatCreate()">
+            <mat-icon>mail</mat-icon>
+          </button>
+        </ng-template>
+      </mat-card-header>
+      <div class="profile-btn-container">
+        <mat-card-actions>
+          <button mat-button class="light-btn" (click)="openFollowersDialog()">{{followers.length}} followers</button>
+          <button mat-button class="light-btn" (click)="openFolloweesDialog()">{{followees.length}} followings</button>
+        </mat-card-actions>
+      </div>
+    </div>
+  </mat-card>
+</div>
+<div>
+  <app-posts-list [newsDataSource]="dataSource"></app-posts-list>
+</div>
+

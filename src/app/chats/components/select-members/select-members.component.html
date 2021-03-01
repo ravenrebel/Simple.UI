@@ -1,0 +1,32 @@
+<form [formGroup]="addMemberFormGroup">
+  <mat-form-field>
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let user of selectedUsers"
+                [selectable]="true"
+                [removable]="true"
+                (removed)="removeUser(user)">
+        {{user?.userName}}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+    <input #userNameInput
+           type="text"
+           placeholder="Members"
+           matInput
+           formControlName="name"
+           [matAutocomplete]="auto"
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           (matChipInputTokenEnd)="addUser($event)"
+    >
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="selectUser($event)">
+      <mat-option *ngFor="let option of filteredOptions" [value]="option">
+        <img class="option-img"
+             [src]="option.profilePictureUrl? baseUrl + option.profilePictureUrl: defaultProfilePictureUrl"
+             height="25" alt="Avatar">
+        <span>{{option.userName}}</span> | <small>{{option.firstName + ' ' + option.lastName}}</small>
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="addMemberFormGroup.get('name').errors?.required">Username is required</mat-error>
+  </mat-form-field>
+</form>

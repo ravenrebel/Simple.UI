@@ -1,0 +1,63 @@
+.ql-container {
+  margin-bottom: 5%;
+  border-radius: $border-radius;
+  font-size: 16px;
+}
+
+.ql-editor {
+  padding: 5px;
+
+  &:focus {
+    border: 2px solid mat-color($primary) !important;
+  }
+}
+
+mat-form-field.mat-form-field {
+  // make sure any quill tooltips, bubbles, or popups aren't occluded
+  .ql-tooltip {
+    z-index: 1;
+  }
+}
+
+.ql-error {
+  margin-top: -20px;
+  padding-bottom: 20px;
+}
+
+.ql-snow.ql-toolbar {
+  font-family: inherit;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+
+  .ql-picker-label,
+  .ql-picker-options .ql-picker-item {
+    outline: none;
+  }
+
+  button:hover,
+  button:focus,
+  button.ql-active,
+  .ql-picker-label:hover,
+  .ql-picker-label.ql-active,
+  .ql-picker-item:hover,
+  .ql-picker-item.ql-selected {
+    color: mat-color($primary);
+
+    .ql-fill,
+    .ql-stroke.ql-fill {
+      fill: mat-color($primary);
+    }
+
+    .ql-stroke-miter {
+      stroke: mat-color($primary);
+    }
+
+    .ql-stroke {
+      stroke: mat-color($primary);
+    }
+  }
+}
+
+
+

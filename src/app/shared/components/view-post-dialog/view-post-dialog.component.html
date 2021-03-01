@@ -1,0 +1,26 @@
+
+<div class="flex-container">
+  <h1 mat-dialog-title>{{post.header}}</h1>
+
+  <div>
+    <button mat-icon-button
+            color="accent"
+            matTooltip="Close"
+            [mat-dialog-close]>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="flex-container">
+  <app-user-info [user]="post.creator"></app-user-info>
+  <div class="date-container">{{post.createdAt | date: 'h:mm a dd MMM, yyyy'}}</div>
+</div>
+
+<div mat-dialog-content>
+  <mat-card>
+    <mat-card-content>
+      <app-post-content [post]="post"></app-post-content>
+    </mat-card-content>
+  </mat-card>
+</div>

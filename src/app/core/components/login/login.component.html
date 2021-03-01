@@ -1,0 +1,35 @@
+<form [formGroup]="loginFormGroup">
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Username or Email</mat-label>
+      <input matInput required name="login" formControlName="login">
+      <mat-error *ngIf="loginFormGroup.get('login').errors?.required">Login is required</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Password</mat-label>
+        <input matInput required name="password" formControlName="password" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix
+                type="button"
+                (click)="hide = !hide"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+          <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginFormGroup.get('password').errors?.required">Password is required</mat-error>
+      </mat-form-field>
+  </div>
+  <div *ngIf="!loading; else spinner" class="btn-container">
+    <button mat-stroked-button color="accent" (click)="login()">Sign In</button>
+  </div>
+  <div class="link-container">
+    <a [routerLink]="['/register']">Do not have an account?</a>
+  </div>
+</form>
+<ng-template #spinner>
+  <div class="spinner-container">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+</ng-template>
+
